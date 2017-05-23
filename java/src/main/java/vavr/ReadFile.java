@@ -1,6 +1,7 @@
 package vavr;
 
 import io.vavr.collection.Seq;
+import io.vavr.collection.Traversable;
 import io.vavr.concurrent.Future;
 
 import java.util.Arrays;
@@ -32,7 +33,9 @@ public class ReadFile {
 //        f1.onSuccess(bytes -> System.out.println(new String(bytes)));
 
         //4
-        Future<String> fs = f1.map(bytes -> new String(bytes));
+        f1.onFailure(Throwable::printStackTrace);
+// 5
+        Future<String> fs = f1.map(String::new);
 //        fs.onSuccess(System.out::println);
 
 //6
@@ -47,7 +50,7 @@ public class ReadFile {
 
         //7
         Future<Seq<Integer>> countsFuture = Future.sequence(Arrays.asList(lengthFuture, lengthFuture2));
-        Future<Number> sumFuture = countsFuture.map(counts -> counts.sum());
+        Future<Number> sumFuture = countsFuture.map(Traversable::sum);
         sumFuture.onSuccess(System.out::println);
     }
 
