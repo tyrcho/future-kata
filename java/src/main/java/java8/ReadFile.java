@@ -1,3 +1,5 @@
+package java8;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
@@ -19,7 +21,7 @@ public class ReadFile {
         FileIO fileIO = new FileIO(Executors.newCachedThreadPool());
         //1
         CompletableFuture<byte[]> future = fileIO.readAsync("pom.xml");
-        CompletableFuture<byte[]> future2 = fileIO.readAsync("src/main/java/FileIO.java");
+        CompletableFuture<byte[]> future2 = fileIO.readAsync("src/main/java/java8/FileIO.java");
 
         //2
         //System.out.println(new String(future.get()));
